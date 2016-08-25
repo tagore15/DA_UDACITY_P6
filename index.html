@@ -1,0 +1,69 @@
+<html>
+<div id="chart1"></div>
+<div id="chart2"></div>
+<div id="chart3"></div>
+<script src ="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+<script type="text/javascript">
+	var svg1 = dimple.newSvg("#chart1", 600, 600);
+	d3.csv("titanic_data.csv", function(data) {
+	for (i = 0; i < data.length; i++)
+	{
+		data[i]['Count'] = 1;
+		if (data[i]['Survived'] == 0)
+		{
+			data[i]['Status'] = "Survived";
+		}
+		else
+		{
+			data[i]['Status'] = "Not Survived";
+		}
+	}
+	var chart1 = new dimple.chart(svg1, data);
+	chart1.addCategoryAxis("x", "Sex");
+	chart1.addMeasureAxis("y", "Count");
+	chart1.addSeries("Status", dimple.plot.bar);
+	chart1.addLegend(400, 100, 100, 100, "right");
+	chart1.draw();
+	svg1.append("text")
+			.attr("x", chart1._xPixels() + chart1._widthPixels()/2)
+			.attr("y", chart1._yPixels() - 20)
+			.style("text-anchor", "middle")
+			.style("font-family", "sans-serif")
+			.style("font-weight", "bold")
+			.text("SURVIVOR V/S GENDER")
+
+	var svg2 = dimple.newSvg("#chart2", 600, 600);
+	var chart2 = new dimple.chart(svg2, data);
+	var x = chart2.addCategoryAxis("x", "Pclass");
+	chart2.addMeasureAxis("y", "Count");
+	chart2.addSeries("Status", dimple.plot.bar);
+	chart2.addLegend(100, 100, 100, 100, "left");
+	chart2.draw();
+	svg2.append("text")
+			.attr("x", chart2._xPixels() + chart2._widthPixels()/2)
+			.attr("y", chart2._yPixels() - 20)
+			.style("text-anchor", "middle")
+			.style("font-family", "sans-serif")
+			.style("font-weight", "bold")
+			.text("SURVIVOR V/S CLASS")
+
+
+	var svg3 = dimple.newSvg("#chart3", 600, 600);
+	var chart3 = new dimple.chart(svg3, data);
+	var x = chart3.addCategoryAxis("x", ["Pclass", "Sex"]);
+	chart3.addMeasureAxis("y", "Count");
+	chart3.addSeries("Status", dimple.plot.bar);
+	chart3.addLegend(100, 100, 100, 100, "left");
+	chart3.draw();
+	svg3.append("text")
+			.attr("x", chart3._xPixels() + chart3._widthPixels()/2)
+			.attr("y", chart3._yPixels() - 20)
+			.style("text-anchor", "middle")
+			.style("font-family", "sans-serif")
+			.style("font-weight", "bold")
+			.text("SURVIVOR V/S CLASS/GENDER")		
+
+	});
+	</script>
+</html>
