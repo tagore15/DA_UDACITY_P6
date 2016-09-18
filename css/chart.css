@@ -1,0 +1,12 @@
+.title {
+	text-align: center;
+	color: blue;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.buttons {
+	height:40px;
+	width:300px;
+	background-color: white;
+}

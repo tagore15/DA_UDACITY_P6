@@ -1,0 +1,41 @@
+<html>
+
+<head>
+
+<title>
+PROJECT-UDACITY
+</title>
+
+<script src ="http://d3js.org/d3.v3.min.js" charset="utf-8"/>
+</head>
+<body>
+<script>
+	dataset = [];
+	d3.csv("titanic_data.csv", function(d)
+	{
+		dataset = d;
+	})
+	var svg = d3.select("body").append("svg")
+			  .attr("width", 1000)
+			  .attr("height", 1000)
+	var omap = dataset.map(function(i) { return parseInt(i.Age); });
+
+	function filterById(obj) { if (!isNaN(obj)) { return true; } else { return false; } }
+	var map = omap.filter(filterById)
+
+	var histogram = d3.layout.histogram().bins(10)(map);
+
+	var bars = svg.selectAll(".bar")
+		.data(histogram)
+		.enter()
+		.append("g");
+
+	bars.append("rect")
+		.attr("x", function(d) {return d.x * 5;})
+		.attr("y", 0)
+		.attr("width", function(d) { return d.dx ;})
+		.attr("height", function(d) { return d.y * 5; })
+		.attr("fill", "steelblue");
+</script>
+</body>
+</html>
