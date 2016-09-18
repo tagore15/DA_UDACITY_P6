@@ -7,9 +7,9 @@ Titanic was biggest ship of its time, a engineering marvel that sank on its firs
 * We first give summary visualization of survived/unsurvived passengers and then give interaction buttons to look into granular visualization.
 
 # Feedback
-1) A description was missing, which left user confused and reader could not make a story.
-2) Interaction was missing in visualization.
-3) There was error in survival and non-survival numbers as they were interchanged due to bug.
+1) A description was missing, which left user confused and reader could not make a story.  
+2) Interaction was missing in visualization.  
+3) There was error in survival and non-survival numbers as they were interchanged due to bug.  
 
 # Resources
 https://d3js.org/   
